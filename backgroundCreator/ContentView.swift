@@ -24,17 +24,17 @@ struct ContentView: View {
     @State var color2 = colors.randomElement()
     var body: some View {
         ZStack {
-            LinearGradient(colors: [color1!, color2!], startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea()
+            LinearGradient(colors: [color1!, color2!], startPoint: .bottomLeading, endPoint: .topTrailing).ignoresSafeArea()
             Button("Change Color") {
                 color1 = colors.randomElement()
                 color2 = colors.randomElement()
             }
             .foregroundStyle(.white)
-            .padding(0)
+            .padding(10.0)
             .background(in: RoundedRectangle(cornerRadius: 5.0))
 
         }
-        .padding()
+        
     }
 }
 
