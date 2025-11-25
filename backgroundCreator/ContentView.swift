@@ -25,13 +25,29 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             LinearGradient(colors: [color1!, color2!], startPoint: .bottomLeading, endPoint: .topTrailing).ignoresSafeArea()
-            Button("Change Color") {
-                color1 = colors.randomElement()
-                color2 = colors.randomElement()
+            
+            VStack {
+//                Spacer()
+
+                Text("AHHHHHHHHH")
+                    .foregroundStyle(.black)
+                    .font(.title)
+                
+                
+                Button("Change Color") {
+                    color1 = colors.randomElement()
+                    color2 = colors.randomElement()
+                }
+    //            .foregroundStyle(.black)
+    //            .font(Font.largeTitle.bold())
+                .padding(5.0)
+                .background(Color.black)
+                .clipShape(RoundedRectangle(cornerRadius: 15.0, style: .continuous))
             }
-            .foregroundStyle(.white)
-            .padding(10.0)
-            .background(in: RoundedRectangle(cornerRadius: 5.0))
+            
+            
+
+
 
         }
         
