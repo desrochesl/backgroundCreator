@@ -1,0 +1,45 @@
+### Xcode Build and Configuration ###
+
+# Build directory (usually "DerivedData")
+DerivedData/
+
+# Xcode temporary files
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcworkspace/
+*.playground/xcuserdata/
+*.xcuserdatad/
+*.swiftpm/xcuserdata/
+*.swiftpm/project.xcworkspace/
+
+# Swift Package Manager files
+.build/
+
+# Unit testing and profiling
+*.gcno
+*.gcda
+*.gcov
+*.lcov
+*.profdata
+Session.vim
+
+### Common Files & Preferences ###
+
+# User Environment Configuration
+.DS_Store
+
+# Logs
+*.log
+
+# Dependency Manager Caches (e.g., CocoaPods, Carthage)
+Pods/
+Carthage/Build/
+
+# Secrets and User Files (If created manually)
+.secret
+.env
+
+*.xcscheme
+*.xcscmblueprint
+!default.xcscheme

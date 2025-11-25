@@ -6,14 +6,21 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F8CCBF392ED5FC10003602FA /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = F8CCBF322ED5FC10003602FA /* .gitignore */; };
+		F8CCBF3B2ED5FC10003602FA /* README.MD in Resources */ = {isa = PBXBuildFile; fileRef = F8CCBF362ED5FC10003602FA /* README.MD */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
-		F8010C372ED5E1F6003E06AA /* confessionsMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = confessionsMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8010C372ED5E1F6003E06AA /* backgroundCreator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = backgroundCreator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8CCBF322ED5FC10003602FA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		F8CCBF362ED5FC10003602FA /* README.MD */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.MD; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		F8010C392ED5E1F6003E06AA /* confessionsMaker */ = {
+		F8010C392ED5E1F6003E06AA /* backgroundCreator */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = confessionsMaker;
+			path = backgroundCreator;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -32,15 +39,17 @@
 		F8010C2E2ED5E1F6003E06AA = {
 			isa = PBXGroup;
 			children = (
-				F8010C392ED5E1F6003E06AA /* confessionsMaker */,
+				F8010C392ED5E1F6003E06AA /* backgroundCreator */,
 				F8010C382ED5E1F6003E06AA /* Products */,
+				F8CCBF322ED5FC10003602FA /* .gitignore */,
+				F8CCBF362ED5FC10003602FA /* README.MD */,
 			);
 			sourceTree = "<group>";
 		};
 		F8010C382ED5E1F6003E06AA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F8010C372ED5E1F6003E06AA /* confessionsMaker.app */,
+				F8010C372ED5E1F6003E06AA /* backgroundCreator.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +57,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F8010C362ED5E1F6003E06AA /* confessionsMaker */ = {
+		F8010C362ED5E1F6003E06AA /* backgroundCreator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F8010C422ED5E1F7003E06AA /* Build configuration list for PBXNativeTarget "confessionsMaker" */;
+			buildConfigurationList = F8010C422ED5E1F7003E06AA /* Build configuration list for PBXNativeTarget "backgroundCreator" */;
 			buildPhases = (
 				F8010C332ED5E1F6003E06AA /* Sources */,
 				F8010C342ED5E1F6003E06AA /* Frameworks */,
@@ -61,13 +70,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				F8010C392ED5E1F6003E06AA /* confessionsMaker */,
+				F8010C392ED5E1F6003E06AA /* backgroundCreator */,
 			);
-			name = confessionsMaker;
+			name = backgroundCreator;
 			packageProductDependencies = (
 			);
 			productName = confessionsMaker;
-			productReference = F8010C372ED5E1F6003E06AA /* confessionsMaker.app */;
+			productReference = F8010C372ED5E1F6003E06AA /* backgroundCreator.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -85,7 +94,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F8010C322ED5E1F6003E06AA /* Build configuration list for PBXProject "confessionsMaker" */;
+			buildConfigurationList = F8010C322ED5E1F6003E06AA /* Build configuration list for PBXProject "backgroundCreator" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -99,7 +108,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F8010C362ED5E1F6003E06AA /* confessionsMaker */,
+				F8010C362ED5E1F6003E06AA /* backgroundCreator */,
 			);
 		};
 /* End PBXProject section */
@@ -109,6 +118,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8CCBF392ED5FC10003602FA /* .gitignore in Resources */,
+				F8CCBF3B2ED5FC10003602FA /* README.MD in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,7 +337,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F8010C322ED5E1F6003E06AA /* Build configuration list for PBXProject "confessionsMaker" */ = {
+		F8010C322ED5E1F6003E06AA /* Build configuration list for PBXProject "backgroundCreator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F8010C402ED5E1F7003E06AA /* Debug */,
@@ -335,7 +346,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F8010C422ED5E1F7003E06AA /* Build configuration list for PBXNativeTarget "confessionsMaker" */ = {
+		F8010C422ED5E1F7003E06AA /* Build configuration list for PBXNativeTarget "backgroundCreator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F8010C432ED5E1F7003E06AA /* Debug */,

@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  GradientMaker
+//  backgroundCreator
 //
 //  Created by Luna DesRoches on 11/24/25.
 //
