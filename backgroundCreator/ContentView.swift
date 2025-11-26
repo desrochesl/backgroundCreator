@@ -32,7 +32,7 @@ struct ContentView: View {
     @State var color2 = colors.randomElement()
 
     @State private var pastedText: String =
-        "Tap the button below to paste text from your clipboard onto this gradient."
+        "Paste from Clipboard to display text!"
 
     var body: some View {
         ZStack {
@@ -74,12 +74,26 @@ struct ContentView: View {
                     .clipShape(
                         RoundedRectangle(cornerRadius: 10, style: .continuous)
                     )
+
                     Spacer()
 
+                    Button("Create Image") {
+
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                    .background(.ultraThinMaterial)
+                    .foregroundStyle(.white)
+                    .clipShape(
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    )
+
+                    Spacer()
                 }
             }
             .padding()
         }
+
     }
 
     private func changeColors() {
