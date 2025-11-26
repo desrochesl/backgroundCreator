@@ -29,21 +29,21 @@ var colors = [
 
 var possiblePoints: [UnitPoint] = [
     .top, .bottom, .leading, .trailing,
-    .topLeading, .topTrailing, .bottomLeading, .bottomTrailing
+    .topLeading, .topTrailing, .bottomLeading, .bottomTrailing,
 ]
 
 struct ContentView: View {
     @State var color1 = colors.randomElement()
     @State var color2 = colors.randomElement()
-    
+
     @State var currentStartPoint: UnitPoint = .bottomLeading
     @State var currentEndPoint: UnitPoint = .topTrailing
-    
+
     @State private var pastedText: String =
         "Paste from Clipboard to display text!"
 
     var body: some View {
-        // 1. NavigationStack is required to create the Top Bar
+
         NavigationStack {
             ZStack {
                 LinearGradient(
@@ -72,7 +72,6 @@ struct ContentView: View {
                     Button {
                         changeColors()
                     } label: {
-                        // Label automatically handles Icon vs Text based on platform
                         Label("Colors", systemImage: "paintbrush.fill")
                     }
 
@@ -89,26 +88,25 @@ struct ContentView: View {
                     }
                 }
             }
-            .ignoresSafeArea()  // Ensure this is on the gradient or the container holding it
+            .ignoresSafeArea()
         }
     }
     private func changeColors() {
         color1 = colors.randomElement()
         color2 = colors.randomElement()
-        
+
         let newStart = possiblePoints.randomElement() ?? .top
-                var newEnd = possiblePoints.randomElement() ?? .bottom
-                
-                while newEnd == newStart {
-                    newEnd = possiblePoints.randomElement() ?? .bottom
-                }
-                
-                
-                withAnimation {
-                    currentStartPoint = newStart
-                    currentEndPoint = newEnd
-                }
-        
+        var newEnd = possiblePoints.randomElement() ?? .bottom
+
+        while newEnd == newStart {
+            newEnd = possiblePoints.randomElement() ?? .bottom
+        }
+
+        withAnimation {
+            currentStartPoint = newStart
+            currentEndPoint = newEnd
+        }
+
     }
 
     private func pasteContent() {
@@ -129,7 +127,7 @@ struct ContentView: View {
                     pastedText = clipboardString
                 }
             } else {
-                // Fallback if clipboard is empty or contains non-text data
+
                 withAnimation {
                     pastedText = "Clipboard is empty or does not contain text!"
                 }
