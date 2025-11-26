@@ -45,52 +45,58 @@ struct ContentView: View {
     var body: some View {
 
         NavigationStack {
-            ZStack {
-                LinearGradient(
-                    colors: [color1!, color2!],
-                    startPoint: currentStartPoint,
-                    endPoint: currentEndPoint
-                )
-                VStack(alignment: .center, spacing: 16) {
-                    Text(pastedText)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                        .background(.ultraThinMaterial)
-                        .clipShape(
-                            RoundedRectangle(
-                                cornerRadius: 12,
-                                style: .continuous
-                            )
-                        )
+            backgroundCard
+                .ignoresSafeArea()
+                .navigationTitle("")
+                .toolbar {
+                    ToolbarItemGroup(placement: .primaryAction) {
+                        Button {
+                            changeColors()
+                        } label: {
+                            Label("Colors", systemImage: "paintbrush.fill")
+                        }
 
-                }
-                .padding()
-            }
-            .navigationTitle("")
-            .toolbar {
-                ToolbarItemGroup(placement: .primaryAction) {
-                    Button {
-                        changeColors()
-                    } label: {
-                        Label("Colors", systemImage: "paintbrush.fill")
-                    }
+                        Button {
+                            pasteContent()
+                        } label: {
+                            Label("Paste", systemImage: "document.on.clipboard")
+                        }
 
-                    Button {
-                        pasteContent()
-                    } label: {
-                        Label("Paste", systemImage: "document.on.clipboard")
-                    }
-
-                    Button {
-                        // Export logic here
-                    } label: {
-                        Label("Save", systemImage: "square.and.arrow.down")
+                        Button {
+                            // 2. Call the save function
+                        } label: {
+                            Label("Save", systemImage: "square.and.arrow.down")
+                        }
                     }
                 }
-            }
-            .ignoresSafeArea()
+                #if os(macOS)
+                    .toolbarBackground(.hidden, for: .windowToolbar)
+                #else
+                    .toolbarBackground(.hidden, for: .navigationBar)
+                #endif
         }
     }
+
+    var backgroundCard: some View {
+        ZStack {
+            LinearGradient(
+                colors: [color1!, color2!],
+                startPoint: currentStartPoint,
+                endPoint: currentEndPoint
+            )
+            VStack(alignment: .center, spacing: 16) {
+                Text(pastedText)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                    .background(.ultraThinMaterial)
+                    .clipShape(
+                        RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    )
+            }
+            .padding()
+        }
+    }
+
     private func changeColors() {
         color1 = colors.randomElement()
         color2 = colors.randomElement()
