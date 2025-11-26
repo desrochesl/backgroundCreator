@@ -27,78 +27,88 @@ var colors = [
     Color.black,
 ]
 
+var possiblePoints: [UnitPoint] = [
+    .top, .bottom, .leading, .trailing,
+    .topLeading, .topTrailing, .bottomLeading, .bottomTrailing
+]
+
 struct ContentView: View {
     @State var color1 = colors.randomElement()
     @State var color2 = colors.randomElement()
-
+    
+    @State var currentStartPoint: UnitPoint = .bottomLeading
+    @State var currentEndPoint: UnitPoint = .topTrailing
+    
     @State private var pastedText: String =
         "Paste from Clipboard to display text!"
 
     var body: some View {
-        ZStack {
-            LinearGradient(
-                colors: [color1!, color2!],
-                startPoint: .bottomLeading,
-                endPoint: .topTrailing
-            ).edgesIgnoringSafeArea(.all)
+        // 1. NavigationStack is required to create the Top Bar
+        NavigationStack {
+            ZStack {
+                LinearGradient(
+                    colors: [color1!, color2!],
+                    startPoint: currentStartPoint,
+                    endPoint: currentEndPoint
+                )
+                VStack(alignment: .center, spacing: 16) {
+                    Text(pastedText)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .background(.ultraThinMaterial)
+                        .clipShape(
+                            RoundedRectangle(
+                                cornerRadius: 12,
+                                style: .continuous
+                            )
+                        )
 
-            VStack(alignment: .center, spacing: 16) {
-                Text(pastedText)
-                    .multilineTextAlignment(.center)
-                    .padding()
-                    .background(.ultraThinMaterial)
-                    .clipShape(
-                        RoundedRectangle(cornerRadius: 12, style: .continuous)
-                    )
-
-                HStack {
-                    Spacer()
-                    Button("Change Colors") {
+                }
+                .padding()
+            }
+            .navigationTitle("")
+            .toolbar {
+                ToolbarItemGroup(placement: .primaryAction) {
+                    Button {
                         changeColors()
+                    } label: {
+                        // Label automatically handles Icon vs Text based on platform
+                        Label("Colors", systemImage: "paintbrush.fill")
                     }
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .background(.ultraThinMaterial)
-                    .foregroundStyle(.white)
-                    .clipShape(
-                        RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    )
-                    Spacer()
-                    Button("Paste from Clipboard") {
+
+                    Button {
                         pasteContent()
+                    } label: {
+                        Label("Paste", systemImage: "document.on.clipboard")
                     }
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .background(.ultraThinMaterial)
-                    .foregroundStyle(.white)
-                    .clipShape(
-                        RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    )
 
-                    Spacer()
-
-                    Button("Create Image") {
-
+                    Button {
+                        // Export logic here
+                    } label: {
+                        Label("Save", systemImage: "square.and.arrow.down")
                     }
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .background(.ultraThinMaterial)
-                    .foregroundStyle(.white)
-                    .clipShape(
-                        RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    )
-
-                    Spacer()
                 }
             }
-            .padding()
+            .ignoresSafeArea()  // Ensure this is on the gradient or the container holding it
         }
-
     }
-
     private func changeColors() {
         color1 = colors.randomElement()
         color2 = colors.randomElement()
+        
+        let newStart = possiblePoints.randomElement() ?? .top
+                var newEnd = possiblePoints.randomElement() ?? .bottom
+                
+                while newEnd == newStart {
+                    newEnd = possiblePoints.randomElement() ?? .bottom
+                }
+                
+                
+                withAnimation {
+                    currentStartPoint = newStart
+                    currentEndPoint = newEnd
+                }
+        
     }
 
     private func pasteContent() {
