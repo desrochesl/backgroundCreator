@@ -9,10 +9,11 @@ import SwiftUI
 
 #if os(macOS)
     import AppKit
-    typealias PlatformColor = NSColor
+    internal import UniformTypeIdentifiers
+    typealias PlatformImage = NSImage
 #else
     import UIKit
-    typealias PlatformColor = UIColor
+    typealias PlatformImage = UIImage
 #endif
 
 var colors = [
@@ -63,7 +64,7 @@ struct ContentView: View {
                         }
 
                         Button {
-                            // 2. Call the save function
+                            saveImage()
                         } label: {
                             Label("Save", systemImage: "square.and.arrow.down")
                         }
@@ -92,6 +93,7 @@ struct ContentView: View {
                     .clipShape(
                         RoundedRectangle(cornerRadius: 12, style: .continuous)
                     )
+                    .font(.system(size: 45, weight: .bold, design: .rounded))
             }
             .padding()
         }
@@ -141,7 +143,59 @@ struct ContentView: View {
 
         #endif
     }
+
+    func saveImage() {
+        let renderer = ImageRenderer(
+            content: backgroundCard.frame(width: 1080, height: 1080)
+        )
+        renderer.scale = 1.0
+
+        #if os(macOS)
+            if let nsImage = renderer.nsImage {
+                let panel = NSSavePanel()
+                panel.allowedContentTypes = [.png]
+                panel.nameFieldStringValue = "MyWallpaper.png"
+                panel.begin { response in
+                    if response == .OK, let url = panel.url {
+                        if let tiff = nsImage.tiffRepresentation,
+                            let bitmap = NSBitmapImageRep(data: tiff),
+                            let pngData = bitmap.representation(
+                                using: .png,
+                                properties: [:]
+                            )
+                        {
+                            try? pngData.write(to: url)
+                        }
+                    }
+                }
+            }
+        #else
+            if let uiImage = renderer.uiImage {
+                let imageSaver = ImageSaver()
+                imageSaver.writeToPhotoAlbum(image: uiImage)
+            }
+
+        #endif
+
+    }
+
 }
+
+#if os(iOS)
+class ImageSaver: NSObject {
+    func writeToPhotoAlbum(image: UIImage) {
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveCompleted), nil)
+    }
+
+    @objc func saveCompleted(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            print("Save error: \(error.localizedDescription)")
+        } else {
+            print("Saved successfully!")
+        }
+    }
+}
+#endif
 
 #Preview {
     ContentView()
